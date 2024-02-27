@@ -53,9 +53,13 @@ broom::tidy(lsmodel_frogs, conf.int = T)
 boxpplot_frog <- ggplot(data=frog_data_clean, aes(x=temperature, y=days))+
   geom_boxplot(aes(fill=temperature),
                alpha = 0.5,
-               width = 0.5)+
+               width = 0.425)+
   geom_jitter(aes(colour=temperature),
               width=0.2)+
+  labs(x="Temperature (°C)", y="No. of days for spawn to hatch",
+       title = "Figure 1", subtitle = "Hatching times in days respective to three differing Temperatures (°C)")+
+  scale_fill_manual(values = c("cyan2", "coral1","darkred"))+
+  scale_colour_manual(values = c("cadetblue4", "coral3","brown4"))+
   theme_minimal()+
   theme(legend.position = "none")
 
