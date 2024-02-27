@@ -1,6 +1,7 @@
 # Packages ----
 library(tidyverse)
 library(janitor)
+library(gt)
 #___________________----
 # Read data----
 frog_data <- read.csv("frogs_messy_data.csv")
@@ -45,7 +46,7 @@ summary(frog_data_clean)
 # ANALYSIS ----
 lsmodel_frogs <- lm(days ~ temperature, data = frog_data_clean)
 summary(lsmodel_frogs)
-anova(lsmodel_frogs)
+anova(lsmodel_frogs)%>% gt::gt()
 broom::tidy(lsmodel_frogs, conf.int = T)
 #___________________________----
 # Plotting ----

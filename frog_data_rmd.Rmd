@@ -5,18 +5,27 @@ date: "2024-02-27"
 output: html_document
 ---
 
-```{r setup, echo=FALSE}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = "center",
+                      fig.width = 8,
+                      fig.asp = 0.8,
+                      out.width = "80%")
+
+```
+
+```{r library, include=FALSE}
 # Packages ----
 library(tidyverse)
 library(janitor)
+library(gt)
 ```
 
-
-
-```{r set up, echo=FALSE, include=FALSE}
+```{r read-data, include=FALSE, echo=FALSE}
 #___________________----
 # Read data----
-frog_data <- read.csv("frogs_messy_data.csv")
+frog_data <- read.csv("data/frogs_messy_data.csv")
 #_______________----
 # Clean data ----
 # clean up column names
@@ -53,16 +62,21 @@ frog_data_clean %>%
   sum()
 # quick summary
 summary(frog_data_clean)
+```
+# Results from ANOVA 
+```{r analysis, include=TRUE, echo=FALSE, warning=FALSE}
 #_____________________----
 # Analysis----
 # ANALYSIS ----
 lsmodel_frogs <- lm(days ~ temperature, data = frog_data_clean)
 summary(lsmodel_frogs)
-anova(lsmodel_frogs)
-broom::tidy(lsmodel_frogs, conf.int = T)
+anova(lsmodel_frogs)%>% gt::gt()
+broom::tidy(lsmodel_frogs, conf.int = T)%>% gt::gt()
 ```
-
-```{r set up, include=TRUE}
+# Putting the ANOVA test into words
+### [TEXT]
+## Visualised dataset (Figure 1) which has been analysed using ANOVA
+```{r plotting, include=TRUE, echo=FALSE, warning=FALSE}
 #___________________________----
 # Plotting ----
 
