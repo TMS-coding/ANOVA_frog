@@ -5,6 +5,7 @@ date: "2024-02-27"
 output:
   pdf_document: default
   html_document: default
+  latex_engine: pdflatex
 ---
 
 
@@ -65,7 +66,8 @@ frog_data_clean %>%
 # quick summary
 summary(frog_data_clean)
 ```
-# Results from ANOVA 
+# Results from ANOVA
+### Raw and tabled data
 ```{r analysis, include=TRUE, echo=FALSE, warning=FALSE}
 #_____________________----
 # Analysis----
@@ -76,7 +78,7 @@ anova(lsmodel_frogs)%>% gt::gt()
 broom::tidy(lsmodel_frogs, conf.int = T)%>% gt::gt()
 ```
 # Putting the ANOVA test into words
-### Increasing enivornmental temperatures had a clear negative effect on the time taken for frogspawn to hatch (one-way ANOVA: F2,57 = 385.9, P < 0.001). At 13∘C the mean time to hatching was 26.3 days, this decreased by an average of 5.3 days at 18∘C and finally by 10.1 days at 25∘C.
+### Increasing enivornmental temperatures had a clear negative effect on the time taken for frogspawn to hatch (one-way ANOVA: F2,57 = 385.9, P < 0.001). At 13C the mean time to hatching was 26.3 days, this decreased by an average of 5.3 days at 18C and finally by 10.1 days at 25C.
 ## Visualised dataset (Figure 1) previously analysed using ANOVA
 ```{r plotting, include=TRUE, echo=FALSE, warning=FALSE}
 #___________________________----
@@ -98,4 +100,4 @@ boxpplot_frog <- ggplot(data=frog_data_clean, aes(x=temperature, y=days))+
 boxpplot_frog
 
 ```
-### Figure 1: The time in days it takes for frogspawn to hatch in 13, 18 and 25°C temperatures. Thick horizontal line is the median with individual points displayed as a jitter.   
+### Figure 1: The time in days it takes for frogspawn to hatch in 13, 18 and 25C temperatures. Thick horizontal line is the median with individual points displayed as a jitter.   
